@@ -1,0 +1,46 @@
+name: Code Review
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run npm Audit
+        run: npm audit --audit-level=low || true
+
+      - name: Run Snyk Open Source Scan
+        run: |
+          npx snyk test --severity-threshold=low | tee snyk-open-source-report.txt
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        continue-on-error: true
+
+      - name: Run Snyk Code Scan
+        run: |
+          npx snyk code test --severity-threshold=low | tee snyk-code-report.txt
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        continue-on-error: true
+
+      - name: Upload Snyk Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: snyk-reports
+          path: |
+            snyk-open-source-report.txt
+            snyk-code-report.txt
