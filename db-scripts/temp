@@ -1,0 +1,39 @@
+use woloo_staging;
+select id from users where mobile in (9836643430);
+
+SET SQL_SAFE_UPDATES = 0;
+
+delete  from user_saved_categories where user_id in (select id from users where mobile in (9836643430));
+delete  from user_voucher_code where user_id in (select id from users where mobile in (9836643430));
+delete  from user_subscriptions where user_id in (select id from users where mobile in (9836643430));
+delete  from user_roles where user_id in (select id from users where mobile in (9836643430));
+delete  from user_razopay where user_id in (select id from users where mobile in (9836643430));
+delete  from user_woloo_ratings where user_id in (select id from users where mobile in (9836643430));
+delete from transaction_details where user_id in (select id from users where mobile in (9836643430));
+delete from user_location_logs where user_id in (select id from users where mobile in (9836643430));
+
+delete from voucher_links where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_business_hours where user_id in (select id from users where mobile in (9836643430));
+delete from blog_favourites where user_id in (select id from users where mobile in (9836643430));
+delete from blog_read_status where user_id in (select id from users where mobile in (9836643430));
+delete from device_details where user_id in (select id from users where mobile in (9836643430));
+delete from otps where user_id in (select id from users where mobile in (9836643430));
+delete from payments where user_id in (select id from users where mobile in (9836643430));
+delete from period_trackers where user_id in (select id from users where mobile in (9836643430));
+delete from reviews where user_id in (select id from users where mobile in (9836643430));
+delete from sos_numbers where user_id in (select id from users where mobile in (9836643430));
+delete from user_logs where user_id in (select id from users where mobile in (9836643430));
+delete from user_offers where user_id in (select id from users where mobile in (9836643430));
+delete from wallet_pending_transactions where user_id in (select id from users where mobile in (9836643430));
+delete from wallets where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_business_hours where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_engagements where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_history_scans where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_ratings where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_requests where user_id in (select id from users where mobile in (9836643430));
+delete from woloo_wallets where user_id in (select id from users where mobile in (9836643430));
+delete from woloos where user_id in (select id from users where mobile in (9836643430));
+-- delete from woloos_bckup_23_nov where user_id in (select id from users where mobile in (9836643430));
+
+delete  from blog_likes where user_ids in (select id from users where mobile in (9836643430));
+delete from users where mobile in (9836643430);
